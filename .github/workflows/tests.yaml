@@ -1,0 +1,46 @@
+name: Tests
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src
+
+    steps:
+      - name: Create GitHub App token
+        id: create_token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Copy .env.example to .env
+        run: cp .env.example .env
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Run tests coverage
+        uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          working-directory: ./src
+          github-token: ${{ steps.create_token.outputs.token }}
+          annotations: coverage
