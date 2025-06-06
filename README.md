@@ -61,7 +61,11 @@ PORT=3000
 
 > ⚠️ **Important:** Do not commit your `.env` file to version control. It may contain sensitive information.
 
-## 🧪 Running Locally
+## 🌀 Running
+
+> To test the middleware locally without running oauth2-proxy, use a browser extension like [ModHeader](https://modheader.com/) to inject the header: x-forwarded-email: your-email@example.com
+
+### 🧪 Running Locally
 
 ```bash
 git clone https://github.com/your-org/kibana-auth-middleware.git
@@ -72,15 +76,11 @@ cp .env.example .env   # Fill in your environment details
 npm start
 ```
 
-> To test the middleware locally without running oauth2-proxy, use a browser extension like [ModHeader](https://modheader.com/) to inject the header: x-forwarded-email: your-email@example.com
-
-## 🐳 Running with Docker
+### 🐳 Running with Docker
 
 ```bash
-git clone https://github.com/your-org/kibana-auth-middleware.git
-cd kibana-auth-middleware
-docker build -t kibana-auth-middleware .
-docker run -p 3000:3000 --env-file .env kibana-auth-middleware
+docker pull alexsanderp/kibana-auth-middleware:latest
+docker run -p 3000:3000 --env-file .env alexsanderp/kibana-auth-middleware:latest
 ```
 
 ## ✅ Testing
