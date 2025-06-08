@@ -8,12 +8,12 @@ This project is ideal for teams using the free version of Kibana who want to enf
 
 ## ✨ Features
 
-- SSO authentication using [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
-- Seamless integration with Kibana
-- Automatic user provisioning in Elasticsearch
-- Temporary random passwords generated on each login
-- Uses Kibana’s built-in RBAC and user management
-- No paid Elastic licenses required
+- SSO authentication using [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/).
+- Seamless integration with Kibana.
+- Automatic user provisioning in Elasticsearch.
+- Temporary random passwords generated on each login.
+- Uses Kibana’s built-in RBAC and user management.
+- No paid Elastic licenses required.
 
 ## 🚀 How It Works
 
@@ -22,30 +22,30 @@ This project is ideal for teams using the free version of Kibana who want to enf
 3. If the user has a valid Kibana session cookie (`sid`), the request proceeds.
 4. If not:
    - Extracts the email from `x-forwarded-email`
-   - Validates the email domain
-   - Checks if the user exists in Elasticsearch
-     - If not: creates a new user with the `viewer` role
-     - If yes: updates the user’s password
-   - Logs in to Kibana using the generated password
-   - Redirects the user with a valid Kibana session cookie
+   - Validates the email domain.
+   - Checks if the user exists in Elasticsearch:
+     - If not: creates a new user with the `viewer` role.
+     - If yes: updates the user’s password.
+   - Logs in to Kibana using the generated password.
+   - Redirects the user with a valid Kibana session cookie.
 
 ## 📦 Requirements
 
-- Node.js >= 24
-- Elasticsearch and Kibana 9.0.0 (or compatible)
-- A properly configured [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) that sets the `x-forwarded-email` header
+- Node.js >= 24.
+- Elasticsearch and Kibana 9.0.0 (or compatible).
+- A properly configured [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) that sets the `x-forwarded-email` header.
 
 ## ⚙️ Environment Variables
 
-| Variable                | Description                                                                 | Required |
-|-------------------------|-----------------------------------------------------------------------------|----------|
-| `KIBANA_TARGET`         | URL of your Kibana instance (e.g. `https://kibana.example.com`)             | Yes      |
-| `ELASTIC_TARGET`        | URL of your Elasticsearch instance (e.g. `https://elastic.example.com`)     | Yes      |
-| `ELASTIC_USER`          | Elasticsearch user with permission to manage users                          | Yes      |
-| `ELASTIC_PASS`          | Password for the Elasticsearch user                                          | Yes      |
-| `ALLOWED_EMAIL_DOMAINS` | Comma-separated list of allowed email domains (e.g. `example.com`)          | Yes      |
-| `ELASTIC_TIMEOUT_MS`    | Timeout for Elasticsearch requests in milliseconds (default: `10000`)       | No       |
-| `PORT`                  | Port for the middleware to run on (default: `3000`)                          | No       |
+| Variable                | Description                                                             | Required |
+|-------------------------|-------------------------------------------------------------------------|----------|
+| `KIBANA_TARGET`         | URL of your Kibana instance (e.g. `https://kibana.example.com`)         | Yes      |
+| `ELASTIC_TARGET`        | URL of your Elasticsearch instance (e.g. `https://elastic.example.com`) | Yes      |
+| `ELASTIC_USER`          | Elasticsearch user with permission to manage users                      | Yes      |
+| `ELASTIC_PASS`          | Password for the Elasticsearch user                                     | Yes      |
+| `ALLOWED_EMAIL_DOMAINS` | Comma-separated list of allowed email domains (e.g. `example.com`)      | Yes      |
+| `ELASTIC_TIMEOUT_MS`    | Timeout for Elasticsearch requests in milliseconds (default: `10000`)   | No       |
+| `PORT`                  | Port for the middleware to run on (default: `3000`)                     | No       |
 
 ## 📁 Example `.env`
 
