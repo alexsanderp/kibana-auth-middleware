@@ -31,9 +31,9 @@ This project is ideal for teams using the free version of Kibana who want to enf
 
 ## 📦 Requirements
 
-- Node.js >= 24
-- Elasticsearch and Kibana 9.0.0 (or compatible)
-- A properly configured [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) that sets the `x-forwarded-email` header
+- Node.js >= 24.
+- Elasticsearch and Kibana 9.0.0 (or compatible).
+- A properly configured [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/) that sets the `x-forwarded-email` header.
 
 ## ⚙️ Environment Variables
 
